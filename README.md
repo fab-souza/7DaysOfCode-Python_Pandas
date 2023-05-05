@@ -100,13 +100,111 @@ Eu já havia realizado um pequeno tratamento nos dados, no dia anterior. Por exe
 
 ![03](https://user-images.githubusercontent.com/67301805/236515558-983fef13-2c22-4a7a-92f4-a3ac7b7214ac.jpg)
 
+- Analisar os empréstimos
 
+    - A quantidade que ocorreu no período:
+    
+        Para ver quantos empréstimos ocorreram, fiz um *value_counts()* dos *id_emprestimo*. Sei que seu principal objetivo é apresentar quantas vezes os itens aparecem ao longo do dataset, porém, ao final, ele também mostra o total de valores únicos.
+        
+        ![len](https://user-images.githubusercontent.com/67301805/236521550-5fdafa15-4ddf-46df-9912-2e26c1bc1038.jpg)
+
+        Entretanto, um ponto chamou minha atenção. Ao analisar o *id* que mais apareceu, no começo, imaginei que a regra de empréstimo desta biblioteca fosse diferente da instituição em que estudei, porque pensei que um aluno pegou 6 livros de uma só vez. 
+
+        ![id](https://user-images.githubusercontent.com/67301805/236521214-af36e87d-4fca-4a2b-80b5-d8f83c2a2f13.jpg)
+
+        Depois, pensei que tivesse ocorrido um erro no sistema, porque o *id dos exemplares* se repetiam. Ou seja, o aluno retirou 3 livros, só que, por algum motivo, o sistema acabou duplicando o empréstimo.
+
+        ![rep](https://user-images.githubusercontent.com/67301805/236521833-332e4297-e48e-45ab-b04d-1c729bdaf349.jpg)
+
+        No entanto, as datas do empréstimo são diferentes, apenas o ano, para ser mais exata. Há um intervalo de 1 ano entre a data dos empréstimos e devolução, por isso estes registros não foram excluídos quando fiz a retirada de dados duplicados. 
+
+        ![data](https://user-images.githubusercontent.com/67301805/236522335-78cb88ed-6ddc-40d1-8949-8c26f611be8e.jpg)
+
+        Achei estranho ter dois empréstimos, feitos em anos diferentes, terem o mesmo *ID*. Se eu estivesse trabalhando (de forma remunerada) e me deparasse com uma situação como esta, eu definitivamente, pediria ajuda/concelho para os demais membros da equipe, porque acredito que a repetição de *ID dos empréstimos* seja algo que não devesse ocorrer.
+
+        Voltando à análise da quantidade de empréstimos que foram feitos, há uma outra forma de obter este valor. Para ver os itens único presentes em uma variável, eu uso o *.unique()*, que devolve um *array* com este valores. Ao aplicar a função *len()* no *array*, ela me devolve o número de itens, que no caso é de 1955945 empréstimos.
+
+    - Exemplar mais emprestado:
+    
+        Neste caso, utilizei o *value_counts()* na variável *código de barra*. Ao fazer um *query()* dos três primeiros itens, vi que o segundo exemplar mais emprestado é sobre Ciências Sociais, enquanto o primeiro e terceiro mais emprestado são de Ciências Aplicadas.
+
+        ![image](https://user-images.githubusercontent.com/67301805/236522989-07fd4290-9065-4838-9769-c132d895a367.png)
+        ![image](https://user-images.githubusercontent.com/67301805/236523094-4d2794aa-e023-4e38-84af-d35faa771949.png)
+
+- Verificar os empréstimos ao longo do tempo (gráfico de linha)
+
+As datas no *dataset* são compostas pelo dia e hora do empréstimo e antes de fazer a análise, precisei separar estas duas informações. Segundo a interpretação que tive do Desafio, eu teria que fazer o somatório de quantos empréstimos que ocorreram no dia, antes de plotar o gráfico.
+
+Então, peguei a variável *data_emprestimo* e fiquei apenas com os dias, ao usar o *dt.date*
+
+![image](https://user-images.githubusercontent.com/67301805/236523293-2f085d0f-aba5-4ccd-966e-41d0c989423f.png)
+
+Para saber quantas vezes aquela data aparece, fiz um *value_counts()* em cima do resultado anterior.
+
+![image](https://user-images.githubusercontent.com/67301805/236523410-629da477-7bcc-4b88-ba49-47bb0d0fff1d.png)
+
+Para ter uma ideia inicial de como estavam os empréstimos, fiz um gráfico com o *Matplotlib*:
+
+![image](https://user-images.githubusercontent.com/67301805/236523514-b3acbe96-bbaa-4702-bd7d-cc4e370b3b75.png)
+
+Para conseguir plotar um gráfico mais elaborado, peguei o resultado anterior e transformei em um *DataFrame* para facilitar o plot do gráfico com o *Seaborn*.
+
+![image](https://user-images.githubusercontent.com/67301805/236523682-35f00235-0dbf-45a2-9563-b6066b92ed71.png)
+
+Neste gráfico é possível observar melhor que nos períodos de férias (janeiro, julho e dezembro) a quantidade de empréstimo é menor, enquanto houve uma maior busca pelos livros um pouco depois das férias.
+
+- Verificar os empréstimos ao longo dos anos
+
+Para saber como os empréstimos estão distribuídos ao longo dos anos, peguei a variável *data_empréstimo*, apliquei o *dt.year*, para que ele me devolvesse apenas os anos das datas de empréstimo, e transformei o resultado em um DataFrame. Nele, é possível observar que o ano de 2020 teve a melhor quantidade de empréstimo, mas devo ressaltar que quando fiz a importação dos dados, só tive acesso ao começo daquele ano. Sem contar que, foi um período de pandemia, isolamento social e, provavelmente, sem acesso à biblioteca. Os anos que tiveram mais empréstimos foram 2013, 2012 e 2014, respectivamente, e plotei um gráfico para facilitar a visualização.
+
+![image](https://user-images.githubusercontent.com/67301805/236523935-37a238ba-dddb-4b32-9b3d-86ec424de654.png)
+
+O grande volume de empréstimo pode ter ocorrido por alguns motivos:
+
+   - a instituição começou a oferecer mais cursos, ou ampliou a quantidade de salas/alunos por curso, que acabou ampliando o número de pessoas atendidas pela biblioteca;
+   - ampliação do acervo, permitindo que mais alunos efetuassem o empréstimo.
+
+Em 2015 e 2016, houve uma redução pela procura dos livros, que voltou a aumentar um pouco em 2017, mas não houve melhora nos anos seguintes. A redução no volume de empréstimos pode ser um reflexo de como estava a economia do país naquela época, por exemplo, em 2015 eu estava estudando em uma instituição pública, que passou por greves naquele ano, que bagunçou a grade curricular até 2016. Isso desestimulou alunos, que acabaram trancando a faculdade. Sem contar os casos em que o aluno parou de estudar, porque a situação financeira não estava favorável. 
+
+Outro ponto que pode ter contribuído para a redução, é a maior circulação de material digital (não oficial) entre os alunos. 
+
+- Qual mês possui menor número de empréstimo? Os meses mais movimentados da biblioteca são em março e setembro?
+
+Para saber como os empréstimos estão distribuídos ao longo dos meses, fiz algo semelhante ao que já tinha feito, porém mudei apenas o final do *.dt* para *.dt.month*. Também transformei em um *DataFrame* e plotei um gráfico.
+
+![image](https://user-images.githubusercontent.com/67301805/236524225-9662f8c4-d38f-4c3d-b5a1-219bc3ddd210.png)
+
+E de fato, os meses com menor procura são durante as férias de verão e inverno, janeiro-dezembro e junho-julho, respectivamente. Já os meses com maior procura são março e agosto, diferente da suspeita interna, setembro não é um dos 2 meses com maior procura.
+
+- Qual horário possui maior movimento?
+
+Para finalizar com a distribuição ao longo das horas, mudei o *.dt* para *.dt.hour*, transformei o resultado em um *DataFrame* e plotei o gráfico.
+
+![image](https://user-images.githubusercontent.com/67301805/236524390-79fb5b23-4ad4-4d2e-9be4-87b6300cd898.png)
+
+Na parte da manhã, 10 e 11 horas possuem o maior movimento, na parte da tarde das 16 às 18 horas há um grande movimento na biblioteca, enquanto na parte da noite às 20 horas é o horário mais movimentado. Em contrapartida, os horários com menor movimento são às 6, às 22, 23 e à meia-noite. 
+
+Diante estes números, eu suspenderia o atendimento ao usuário às 6 da manhã, às 23h e a meia-noite, porque de 2010 até 2020 (mesmo que parcial) estes 3 horários tiveram um total de 82 empréstimos, que quando comparados com os mais de 2 milhões de registros que estamos analisando, não chega a atingir 0,01% do total. Ou seja, são os melhores horários para se dedicar a outras atividades. Enquanto às 10 e 11h da manhã e das 16 às 19h, o ideal seria focar no atendimento ao público.
 
 
 
 ### Desafio 4: Análise exploratória de dados e Variáveis
 
 ![04](https://user-images.githubusercontent.com/67301805/236515565-75209607-ed32-4899-a2e8-7ce7863965ca.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Desafio 5: Análise exploratória de dados e Boxplot
