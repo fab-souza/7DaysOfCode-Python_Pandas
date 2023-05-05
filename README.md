@@ -70,7 +70,7 @@ Para tirar minha dúvida se realmente houve erro no sistema e um registro acabou
 E de fato, eles se tratam de um erro, pois todos os registros referem-se à retirada do mesmo livro. Fiz o mesmo para o próximo *id* e houve o mesmo erro que aconteceu com o *id* anterior, nos 3 *ids* seguintes, retiraram mais de um livro de uma só vez, mas ocorreu a duplicação do registro.
 Diante estes erros, fiz um *drop_duplicate()*
 
-
+---
 
 ### Desafio 2: Limpeza dos dados
 
@@ -94,7 +94,7 @@ Segundo o Desafio, não iria precisar da coluna *registro_sistema* em nenhum mom
 
 Eu já havia realizado um pequeno tratamento nos dados, no dia anterior. Por exemplo além de mudar a variável *matricula_ou_siape* para o tipo *string*, eu também passei as variáveis referentes a datas para o tipo *datetime*, pois imaginei que, em algum momento, teria que fazer alguma análise referente ao tempo.
 
-
+---
 
 ### Desafio 3: Análise exploratória de dados e DateTime
 
@@ -186,7 +186,7 @@ Na parte da manhã, 10 e 11 horas possuem o maior movimento, na parte da tarde d
 
 Diante estes números, eu suspenderia o atendimento ao usuário às 6 da manhã, às 23h e a meia-noite, porque de 2010 até 2020 (mesmo que parcial) estes 3 horários tiveram um total de 82 empréstimos, que quando comparados com os mais de 2 milhões de registros que estamos analisando, não chega a atingir 0,01% do total. Ou seja, são os melhores horários para se dedicar a outras atividades. Enquanto às 10 e 11h da manhã e das 16 às 19h, o ideal seria focar no atendimento ao público.
 
-
+---
 
 ### Desafio 4: Análise exploratória de dados e Variáveis
 
@@ -273,6 +273,7 @@ Ao analisar o *crosstab* dos usuários com o CDU, é possível observar que esta
 	
 	Alunos de Graduação, Pós-graduação, do ensino médio/técnico, docentes, servidores, usuários externos e ‘outros’ pegam mais livros de Ciências aplicadas enquanto docentes externos emprestam mais livros de Ciências Sociais. Estas duas categorias representam mais do que 85% do acervo, então é compreensível que elas ocupem as primeiras posições.
 
+---
 
 ### Desafio 5: Análise exploratória de dados e Boxplot
 
@@ -325,6 +326,7 @@ Fica como sugestão para a diretoria da biblioteca:
     
  * Rever as campanhas que foram promovidas, para os alunos de pós-graduação, entre 2013 à 2017, pois podemos inferir que elas foram consistentes, já que elas mantiveram as medianas do número de empréstimos próximos e com os maiores valores máximos.
 
+---
 
 ### Desafio 6: JSON, Excel e Pivot_table
 
@@ -385,26 +387,87 @@ Eu nunca havia trabalhado com o *pivot_table* antes, quando li o desafio, pensei
 
 ![image](https://user-images.githubusercontent.com/67301805/236536354-c369d6ec-261c-47ed-80c1-f946dcfd027d.png)
 
+---
 
 ### Desafio 7: Customização de tabelas
 
 ![07](https://user-images.githubusercontent.com/67301805/236515573-e132a360-850a-4e67-ae96-a0f5c420ab9c.jpg)
 
-- Fazer a diferença percentual de empréstimos realizados (2017, 2018, 2019 e 2022) para cada curso
+- Fazer a diferença percentual de empréstimos realizados (2017, 2018, 2019 e 2022) para cada curso ✅
 
-Fiz a importação dos arquivos Excel e JSON novamente, porém não há registro de alunos de pós graduação no primeiro arquivo, então vi necessidade de unir os dois, como fiz no começo do desafio anterior.
+Fiz a importação dos arquivos Excel e JSON novamente, porém não há registro de alunos de pós graduação no primeiro arquivo, então não vi necessidade de unir os dois, como fiz no começo do desafio anterior.
 
 Para fazer a seleção dos anos, importei o arquivo *parquet* e fui fazendo *query*. Primeiro, com o tipo de aluno, depois com os anos (> 2017 e < 2020).
 
+![image](https://user-images.githubusercontent.com/67301805/236567265-731f6a21-b4dc-4586-9465-df1f43032f61.png)
+
+Da junção dos datasets até o plot da tabela Pivot, basicamente, segui o mesmo processo que fiz no desafio anterior e não vi necessidade de detalhar novamente o que fiz. A tabela ficou da seguinte forma:
+
+![image](https://user-images.githubusercontent.com/67301805/236567349-88af234c-bbf5-44a5-bd5a-58beca32133b.png)
+
+- Criar uma tabela com os valores encontrados ✅
+
+Foi feita uma previsão de quanto empréstimos seriam realizados em 2022, que foi disponibilizado através de um link, e o transformei em um *DataFrame*. 
+
+![image](https://user-images.githubusercontent.com/67301805/236567444-fa26d587-4778-4790-a118-ae1f18e9c116.png)
+
+Ao tentar unir os valores da previsão com a tabela Pivot, eu não obtive sucesso e passei muito mais tempo do que gostaria tentando resolver essa questão. A solução que encontrei foi refazer a tabela Pivot, pois eu tinha acesso a tabela que deu origem ao *pivot table* e a tabela com os novos dados.
+
+![image](https://user-images.githubusercontent.com/67301805/236567548-49cb1130-8ba6-46d5-b736-3d5f96a5a4e1.png)
+![image](https://user-images.githubusercontent.com/67301805/236567583-c7d17502-7fa7-4fa4-b2d9-01af0f02401d.png)
+
+Eu só precisava adicionar mais uma coluna no dataset de previsão, referente ao ano, e depois unir os dois com um *.concat*. Assim, obtive a tabela com os anos de 2017, 2018, 2019 e 2022.
+
+![image](https://user-images.githubusercontent.com/67301805/236567661-a46617d2-23bc-4081-b622-70e3c4525392.png)
+
+Para calcular a diferença percentual, fiz uma função para calcular estes valores, semelhante a *Regra de três*, porém também fazendo uma subtração de 100, para se chegar no percentual, e o valor com duas casas decimais.
+
+![image](https://user-images.githubusercontent.com/67301805/236567718-68884139-c353-45cd-bdf5-89fe664dab5f.png)
+
+Transformei o resultado da função em três variáveis e as transformei em um *DataFrame*.
+
+![image](https://user-images.githubusercontent.com/67301805/236567797-4de043ad-7dc0-44df-b0c1-f529d820ef44.png)
 
 
+- Exportar como HTML ✅
 
-- Criar uma tabela com os valores encontrados
+A exportação precisava atender alguns requisitos:
 
+	- Não contenha numeração de índice;
+	- Os nomes dos cursos tenham apenas a primeira letra maiúscula;
+	- Os números percentuais estejam indicados pelo símbolo “%”;
+	- Cor dos números: Positivos = Verde; Negativos = Vermelho
 
+Para a primeira, como eu já sabia desta condição, quando fui fazer o *Dataframe* com as diferenças percentuais, já atribuí as colunas, nomes em forma de *string*.
 
-- Exportar como HTML
+![image](https://user-images.githubusercontent.com/67301805/236568235-d4736b15-6ba7-441e-9ced-53acaed8ae35.png)
 
+Para fazer o segundo tratamento, utilizei o método *capitalize()*.
+
+![image](https://user-images.githubusercontent.com/67301805/236568379-039a9b50-23d1-41a8-859d-a1b0cd87f6d6.png)
+
+Para os dois últimos itens, eles me custaram muito mais tempo do que planejei 😕
+
+Inicialmente, havia entendido que precisava fazer as alteração no *DataFrame* e que elas precisavam ser feitas antes da exportação. 
+
+Resultado: passei horas tentando atribuir as cores vermelho e verde para as colunas numéricas, sem alterar a coluna *Curso*, mas sem sucesso… 😥
+
+A exaustão foi tamanha, que nem consegui formular uma solução para a adição do símbolo de “%” ao final dos números… 😵‍💫
+
+O projeto já estava com mais de um dia de atraso, eu não estava tendo progressão nas soluções que tentava implementar e decidi fazer a exportação da tabela como ela estava, que resultou no seguinte HTML.
+
+![image](https://user-images.githubusercontent.com/67301805/236568683-d7aaa310-12de-4d45-96bc-46cc5477dec7.png)
+
+Ao verificar a correção, vi que as duas últimas configurações eram para serem feitas durante a exportação, algo que não imaginei como solução.
+
+## Conclusão 🏁
+
+Eu gostei bastante de ter realizado estes desafios, sempre é muito bom pôr em prática o que já aprendemos e acabar descobrindo coisas novas ao longo do caminho.
+infelizmente, eu não consegui entregar os desafios dentro de sete dias e sem as condições finais, mas acredito que o saldo final foi positivo, ainda tenho muito o que explorar na estilização de *DataFrame* e farei isso como lição de casa.
+
+---
+
+Muito obrigada por chegar até aqui e até a próxima 🤗
 
 ## Ferramentas utilizadas 🧰
 <p> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> 
