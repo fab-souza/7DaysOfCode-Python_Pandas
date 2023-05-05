@@ -1,6 +1,6 @@
 # 7 Days Of Code - Python Pandas
 
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=GREEN&style=for-the-badge)
 
 ![Badge code size](https://img.shields.io/github/languages/code-size/fab-souza/7DaysOfCode-Python_Pandas)
 
@@ -15,7 +15,9 @@
 
 ## Sobre o desafio 📚
 
+Para quem não sabe, a [Alura](https://www.alura.com.br/) criou o #7DaysOfCode para as pessoas exercitarem seus conhecimentos em programação, ao oferecer sete desafios em diversas áreas. 
 
+Este desafio sobre Python Pandas foi criado pelo [Francisco Foz](https://br.linkedin.com/in/francisco-tadeu-foz), cujo objetivo é explorar os dados de empréstimos dos acervos do sistema de bibliotecas da UFRN.
 
 
 ## Minha prática 👩🏻‍💻
@@ -429,7 +431,7 @@ Transformei o resultado da função em três variáveis e as transformei em um *
 ![image](https://user-images.githubusercontent.com/67301805/236567797-4de043ad-7dc0-44df-b0c1-f529d820ef44.png)
 
 
-- Exportar como HTML ✅
+- Exportar como HTML 
 
 A exportação precisava atender alguns requisitos:
 
