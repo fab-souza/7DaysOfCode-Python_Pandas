@@ -20,19 +20,32 @@
 
 ## Minha prática 👩🏻‍💻
 
-![01](https://user-images.githubusercontent.com/67301805/236514113-f43e7986-68e3-4349-8074-182217a94360.jpg)
+![01](https://user-images.githubusercontent.com/67301805/236515552-328963ef-a7ac-4239-8f8e-6ae3e68512f7.jpg)
 
-![02](https://user-images.githubusercontent.com/67301805/236514224-e4c8b50b-3813-433c-8f70-8dc2d0597bbc.jpg)
 
-![03](https://user-images.githubusercontent.com/67301805/236514216-c3c645e2-7a79-43d9-ad3a-8cadf5b7964f.jpg)
 
-![04](https://user-images.githubusercontent.com/67301805/236514226-62fede3d-9f1d-4e62-b98a-91e723c9e50f.jpg)
+![02](https://user-images.githubusercontent.com/67301805/236515560-9d6f3444-ed20-4ad7-a664-a88fdb9d4bd5.jpg)
 
-![05](https://user-images.githubusercontent.com/67301805/236514228-1e9b626d-8ab8-44b1-a41a-99ffcb1f6075.jpg)
 
-![06](https://user-images.githubusercontent.com/67301805/236514231-af41f5a8-a758-468b-8383-f07a694a01c7.jpg)
 
-![07](https://user-images.githubusercontent.com/67301805/236514234-169be886-fe9c-4f8e-8172-b7491402906d.jpg)
+![03](https://user-images.githubusercontent.com/67301805/236515558-983fef13-2c22-4a7a-92f4-a3ac7b7214ac.jpg)
+
+
+![04](https://user-images.githubusercontent.com/67301805/236515565-75209607-ed32-4899-a2e8-7ce7863965ca.jpg)
+
+
+
+![05](https://user-images.githubusercontent.com/67301805/236515568-af3baf59-6b27-4095-8403-f1a09c762bd6.jpg)
+
+
+
+![06](https://user-images.githubusercontent.com/67301805/236515569-49c276c0-6db8-4681-b67b-50c608fffd65.jpg)
+
+
+![07](https://user-images.githubusercontent.com/67301805/236515573-e132a360-850a-4e67-ae96-a0f5c420ab9c.jpg)
+
+
+
 
 
 
