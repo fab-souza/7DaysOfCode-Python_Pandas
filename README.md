@@ -76,6 +76,23 @@ Diante estes erros, fiz um *drop_duplicate()*
 
 ![02](https://user-images.githubusercontent.com/67301805/236515560-9d6f3444-ed20-4ad7-a664-a88fdb9d4bd5.jpg)
 
+- Atribuir CDU
+
+Ao invés de fazer o mapeamento do CDU através de uma lógica condicional, eu preferi utilizar a função *pd.cut()*, que aprendi no 1º curso de estatística da Alura. A diferença é que precisei definir, previamente, os *bins* e *labels* antes de utilizar a função. Os *bins* são os valores na lista *cdu* que limitam os valores para os *labels*, que são as áreas de conhecimento.
+
+Para ter certeza que a classificação foi feita corretamente, fiz um *query()* selecionando alguns valores:
+
+![image](https://user-images.githubusercontent.com/67301805/236519212-70ef2d2f-1329-4f3e-9fc2-683e78e921ba.png)
+
+- Excluir coluna
+
+Segundo o Desafio, não iria precisar da coluna *registro_sistema* em nenhum momento, por isso era melhor excluí-la.
+
+![image](https://user-images.githubusercontent.com/67301805/236519367-5de074db-2c76-4383-8c7e-eca4c9e690e4.png)
+
+- Mudar tipo de variável
+
+Eu já havia realizado um pequeno tratamento nos dados, no dia anterior. Por exemplo além de mudar a variável *matricula_ou_siape* para o tipo *string*, eu também passei as variáveis referentes a datas para o tipo *datetime*, pois imaginei que, em algum momento, teria que fazer alguma análise referente ao tempo.
 
 
 
