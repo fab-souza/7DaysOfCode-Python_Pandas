@@ -69,8 +69,9 @@ Para tirar minha dúvida se realmente houve erro no sistema e um registro acabou
 
 ![image](https://user-images.githubusercontent.com/67301805/236517917-c8cdd10e-2c3c-474a-b8cd-9c1c0f10bc67.png)
 
-E de fato, eles se tratam de um erro, pois todos os registros referem-se à retirada do mesmo livro. Fiz o mesmo para o próximo *id* e houve o mesmo erro que aconteceu com o *id* anterior, nos 3 *ids* seguintes, retiraram mais de um livro de uma só vez, mas ocorreu a duplicação do registro.
-Diante estes erros, fiz um *drop_duplicate()*
+E de fato, eles se tratam de um erro, pois todos os registros referem-se à retirada do mesmo livro. Fiz o mesmo para o próximo *id* e houve o mesmo erro que aconteceu com o *id* anterior.
+
+Diante estes erros, fiz um *drop_duplicate()*.
 
 ---
 
@@ -82,9 +83,11 @@ Diante estes erros, fiz um *drop_duplicate()*
 
 Ao invés de fazer o mapeamento do CDU através de uma lógica condicional, eu preferi utilizar a função *pd.cut()*, que aprendi no 1º curso de estatística da Alura. A diferença é que precisei definir, previamente, os *bins* e *labels* antes de utilizar a função. Os *bins* são os valores na lista *cdu* que limitam os valores para os *labels*, que são as áreas de conhecimento.
 
+![CDU](https://user-images.githubusercontent.com/67301805/236575170-3aa6f0a1-aebe-41a4-a378-62d55c65ead9.png)
+
 Para ter certeza que a classificação foi feita corretamente, fiz um *query()* selecionando alguns valores:
 
-![image](https://user-images.githubusercontent.com/67301805/236519212-70ef2d2f-1329-4f3e-9fc2-683e78e921ba.png)
+![image](https://user-images.githubusercontent.com/67301805/236575345-8c37713f-5a61-48fa-8e8e-eab5514b672a.png)
 
 - Excluir coluna ✅
 
@@ -124,7 +127,7 @@ Eu já havia realizado um pequeno tratamento nos dados, no dia anterior. Por exe
 
         Achei estranho ter dois empréstimos, feitos em anos diferentes, terem o mesmo *ID*. Se eu estivesse trabalhando (de forma remunerada) e me deparasse com uma situação como esta, eu definitivamente, pediria ajuda/concelho para os demais membros da equipe, porque acredito que a repetição de *ID dos empréstimos* seja algo que não devesse ocorrer.
 
-        Voltando à análise da quantidade de empréstimos que foram feitos, há uma outra forma de obter este valor. Para ver os itens único presentes em uma variável, eu uso o *.unique()*, que devolve um *array* com este valores. Ao aplicar a função *len()* no *array*, ela me devolve o número de itens, que no caso é de 1955945 empréstimos.
+        Voltando à análise da quantidade de empréstimos que foram feitos, há uma outra forma de obter este valor. Para ver os itens únicos presentes em uma variável, eu uso o *.unique()*, que devolve um *array* com este valores. Ao aplicar a função *len()* no *array*, ela me devolve o número de itens, que no caso é de 1955945 empréstimos.
 
     - Exemplar mais emprestado:
     
@@ -196,7 +199,7 @@ Diante estes números, eu suspenderia o atendimento ao usuário às 6 da manhã,
 
 - Tipo de vínculo ✅
 
-Para saber os valores únicos e quantas vezes eles aparecem na variável, eu utilizei o *value_counts()*, que me devolveu uma *Series* mostrando que os alunos de graduação são os maiores consumidores das bibliotecas, seguidos pelos alunos de pós-graduação e docentes. O que faz total sentido, já que estamos analisando dados de um setor da UFRN, ter pessoas que fazem parte do meio acadêmico como maiores consumidores é compreensível.
+Para saber os valores únicos e quantas vezes eles aparecem na variável, eu utilizei o *value_counts()*, que me devolveu uma *Series* mostrando que os alunos de graduação são os maiores consumidores das bibliotecas, seguidos pelos alunos de pós-graduação e docentes. O que faz total sentido, já que estamos analisando dados de uma universidade, ter pessoas que fazem parte do meio acadêmico como maiores consumidores é compreensível.
 
 ![image](https://user-images.githubusercontent.com/67301805/236525687-5a95d499-0a16-4c5e-aa0e-4b5bb48c4bd2.png)
 
@@ -208,21 +211,22 @@ Depois, uni as duas *Series* em um *Dataframe* através de uma função que crie
 
 ![image](https://user-images.githubusercontent.com/67301805/236525924-468059d3-5447-4850-9c76-4c816b943d64.png)
 
-O ponto que me chamou atenção, foi ver que servidores técnico/administrativo e alunos do ensino médio/técnico efetuam mais empréstimos do que docentes e usuários externos.  Investir nos públicos externos pode fazer com que eles frequentem mais as instalações da universidade e quem sabe, futuramente, retornem como estudantes de graduação, pós-graduação ou docentes. Ou seja, trazer a comunidade para a academia, mostrar que o investimento na universidade retorna na forma de pesquisa, inovação científica e benefícios para a sociedade.
+O ponto que me chamou atenção, foi ver que servidores técnico/administrativo e alunos do ensino médio/técnico efetuam mais empréstimos do que docentes e usuários externos.  Investir nos públicos externos pode fazer com que eles frequentem mais as instalações da universidade e quem sabe, futuramente, retornem como estudantes de graduação, pós-graduação ou docentes. Ou seja, trazer a comunidade para a academia.
 
 - Coleção ✅
 
-Considerando que repetiria as mesmas etapas para analisar as demais variáveis categóricas, eu criei funções que me devolveriam as *Series* e tabela. No caso das *Coleções*, mais do que 99% dela é composta pelo *Acervo circulante*, mas o público também acesso a *Multimeios* (que podem ser partituras, VHS, CDs, DVDs, etc. Fonte: [UFU](https://bibliotecas.ufu.br/servicos/multimeios)), *Monografias*, *Dissertações* e demais publicações.
+Considerando que repetiria as mesmas etapas para analisar as demais variáveis categóricas, eu criei funções que me devolveriam as *Series* e tabela. No caso das *Coleções*, mais do que 99% dela é composta pelo *Acervo circulante*, mas o público também tem acesso a *Multimeios* (que podem ser partituras, VHS, CDs, DVDs, etc. Fonte: [UFU](https://bibliotecas.ufu.br/servicos/multimeios)), *Monografias*, *Dissertações* e demais publicações.
 
 ![image](https://user-images.githubusercontent.com/67301805/236526211-66b42903-adda-473b-8456-7bdf58a949bc.png)
 
-Para entender como público consome as coleções disponíveis na biblioteca, fiz um *crosstab()* entre estas duas variáveis. Considerando o volume que o *Acervo circulante* representa, não é de espantar que ela seja a mais consumida por todos os públicos da biblioteca.
+Para entender como público consome as coleções disponíveis na biblioteca, fiz um *crosstab()* entre estas duas variáveis. Considerando o volume que o *Acervo circulante* representa, não é de se espantar que ela seja a mais consumida por todos os públicos da biblioteca.
 
 ![image](https://user-images.githubusercontent.com/67301805/236526306-9568261e-aee2-4348-9b55-79ce9a08626b.png)
 
 - Biblioteca ✅
 
 Já na variável *biblioteca*, temos 22 bibliotecas registradas, a que mais aparece é a *Biblioteca Central Zila Mamede*, representando mais do que 68% dos empréstimos, enquanto a *Biblioteca Setorial do Núcleo de Ensino Superior do Agreste* é a menor. Essa diferença pode ocorrer por motivos como:
+
     - A primeira biblioteca ser mais antiga e ter um acervo maior;
     
     - A biblioteca Central pode estar próxima a um campus que oferece mais cursos, enquanto a segunda atende alunos e docentes de alguns cursos;
@@ -232,6 +236,8 @@ Já na variável *biblioteca*, temos 22 bibliotecas registradas, a que mais apar
 ![image](https://user-images.githubusercontent.com/67301805/236526490-47ca8c37-deb2-42ac-8ad3-7c0aaca39ec7.png)
 
 Ao fazer um *crosstab* entre os usuários e as bibliotecas, com exceção da biblioteca Central Zila Mamede, ficou difícil identificar a distribuição do público. Por isso, também fiz um *crosstab* com as porcentagens. 
+
+![image](https://user-images.githubusercontent.com/67301805/236527039-42c30129-7f2f-4ef3-a4c1-34a7734f72fa.png)
 
 Nela ficou mais fácil identificar alguns pontos, por exemplo, os alunos de graduação, depois da biblioteca Central, que representa 55,07% do total de empréstimos, utilizam bastante as bibliotecas voltadas a Ciências da Saúde, a biblioteca Setorial do Centro Ciências da Saúde e a biblioteca Setorial da Faculdade de Ciências da Saúde do Trairi, representando 5,01% e 3,32% respectivamente. Estas porcentagem podem promover uma pesquisa mais aprofundada, ao buscar entender o que faz os alunos procurarem estes locais:
 
@@ -245,11 +251,10 @@ Nela ficou mais fácil identificar alguns pontos, por exemplo, os alunos de grad
     
 Já para os alunos de pós-graduação, novamente, depois da biblioteca Central com seus 10,46%, há uma maior procura pela biblioteca Setorial do Centro de Ciências Humanas, Letras e Artes, seguida pela biblioteca Setorial Prof. Alberto Moreira Campos - Departamento de Odontologia, representando 0,92% e 0,65% respectivamente. Por se tratarem de 2 áreas distintas, as campanhas voltadas para este público podem ser divididas por áreas, por exemplo promover eventos de humanas, exatas ou biológicas nas datas comemorativas de cada uma.
 
-![image](https://user-images.githubusercontent.com/67301805/236527039-42c30129-7f2f-4ef3-a4c1-34a7734f72fa.png)
 
 - CDU ✅
 
-Em relação ao CDU, vemos que as bibliotecas efetuaram mais empréstimos de materiais sobre *Ciências aplicadas*, seguida por *Ciências sociais* e depois por *Matemática e ciências naturais*, representando 68,78% 17,83% e 3,32% respectivamente. 
+Em relação ao CDU, vemos que as bibliotecas efetuaram mais empréstimos de materiais sobre *Ciências aplicadas*, seguida por *Ciências sociais* e depois por *Matemática e ciências naturais*, representando 68,78%, 17,83% e 3,32% respectivamente. 
 
 ![image](https://user-images.githubusercontent.com/67301805/236527184-960a1bb2-61c0-4efb-9725-aeb4c8515fc4.png)
 
@@ -259,21 +264,7 @@ Ao analisar o *crosstab* dos usuários com o CDU, é possível observar que esta
     
     - Os docentes externos procuram a UFRN, porque elas têm um acesso mais fácil para eles, seja por questões ligadas à localização, acesso ou horário de atendimento.
 
-- Como se distribuem os empréstimos de exemplares pelos tipos de vínculo dos usuários? ✅
 
-    Desta forma, a diretoria poderá entender qual é o público que está utilizando a biblioteca e assim tomar decisões em continuar com a estratégia de negócio atual ou modificá-la.
-
-- Quais coleções são mais emprestadas? ✅ 
-
-    Da mesma forma, as coleções. Ranquear as coleções mais emprestadas pelo público, será bastante importante para a estratégia atual.
-
-- Quais são as bibliotecas com mais ou menos quantidade de empréstimos? ✅
-
-    Assim, a diretoria conseguirá entender onde ela deverá melhorar e focar suas iniciativas.
-
-- De quais temas da CDU são os exemplares emprestados?
-	
-	Alunos de Graduação, Pós-graduação, do ensino médio/técnico, docentes, servidores, usuários externos e ‘outros’ pegam mais livros de Ciências aplicadas enquanto docentes externos emprestam mais livros de Ciências Sociais. Estas duas categorias representam mais do que 85% do acervo, então é compreensível que elas ocupem as primeiras posições.
 
 ---
 
@@ -326,7 +317,7 @@ Fica como sugestão para a diretoria da biblioteca:
 
  * Verificar se houve grandes mudanças no número de alunos, principalmente os alunos de graduação, já que em 2014 e 2015 ocorreram queda no número total de empréstimos, mas isso não ocorreu com os alunos de pós-graduação. 
     
- * Rever as campanhas que foram promovidas, para os alunos de pós-graduação, entre 2013 à 2017, pois podemos inferir que elas foram consistentes, já que elas mantiveram as medianas do número de empréstimos próximos e com os maiores valores máximos.
+ * Rever as campanhas que foram promovidas, para os alunos de pós-graduação, entre 2013 à 2017, pois podemos inferir que elas foram consistentes, já que elas mantiveram as medianas do número de empréstimos próximos e atingiram os maiores valores máximos.
 
 ---
 
@@ -336,7 +327,7 @@ Fica como sugestão para a diretoria da biblioteca:
 
 - Extrair dados de arquivos Excel e JSON ✅
 
-Para fazer a leitura do arquivo Excel, utilizei o *pd.read_excel*. Retirei a primeira linha, porque ela não referente a variáveis e alterei os nomes das colunas, para ficarem iguais às variáveis presente no dataset sobre os empréstimos. 
+Para fazer a leitura do arquivo Excel, utilizei o *pd.read_excel*. Retirei a primeira linha, porque ela não era referente a variáveis e alterei os nomes das colunas, para ficarem iguais às variáveis presente no dataset sobre os empréstimos. 
 
 Já para ler o arquivo JSON, utilizei o *pd.read_json*, que me devolveu um dataset com duas linhas, a primeira referente aos alunos de graduação e a segunda, dos alunos de pós-graduação.
 
@@ -346,7 +337,9 @@ O público alvo desta análise são os alunos de graduação, então peguei some
 
 ![image](https://user-images.githubusercontent.com/67301805/236535156-1deaec19-2d1c-4e32-a914-5fe551cec8d3.png)
 
-Antes de fazer o agrupamento dos arquivos, vi que as matrículas extraídas do arquivo Excel e JSON não estavam no mesmo padrão. No Excel, elas estavam como *string*, enquanto no JSON elas estavam como *int64*. Eu não poderia fazer somente a mudança para *string*, porque as matrículas no Excel terminam com um *.0*. A resolução que encontrei foi fazer duas alterações: *int* -> *float* -> *string*
+Antes de fazer o agrupamento dos arquivos, vi que as matrículas extraídas do arquivo Excel e JSON não estavam no mesmo padrão. No Excel, elas estavam como *string*, enquanto no JSON elas estavam como *int64*. Eu não poderia fazer somente a mudança para *string*, porque as matrículas no Excel terminam com um *.0*. A resolução que encontrei foi fazer duas alterações: 
+
+*int* -> *float* -> *string*
 
 ![image](https://user-images.githubusercontent.com/67301805/236535250-2d6c3d1d-1f87-48af-981f-cdc7734e67f7.png)
 
@@ -365,11 +358,11 @@ Os dados extraídos do Excel resultaram em dataset com 10.000 linhas, enquanto o
     - Filosofia
     - Pedagogia
 
-Antes de separar apenas os cursos solicitados, importei o dataset dos empréstimos, que estava trabalhando até então e fui fazendo recortes: Primeiro selecionando apenas os alunos de graduação, depois os empréstimos depois de 2015 e fiz o *reset* dos índices.
+Antes de separar apenas os cursos solicitados, importei o dataset dos empréstimos, que estava trabalhando até então e fui fazendo recortes. Primeiro selecionando apenas os alunos de graduação, depois os empréstimos depois de 2015 e fiz o *reset* dos índices.
 
 ![image](https://user-images.githubusercontent.com/67301805/236535715-15e9578c-a17c-4a46-86ae-e6fbd52a89f4.png)
 
-Antes de selecionar os cursos, fiz um *value_counts()*, para ter certeza de que eles estão presentes no dataset. Com a presença de todos confirmada, fiz um *.query()* selecioná-los e criar um novo dataset.
+Antes de selecionar os cursos, fiz um *value_counts()*, para ter certeza de que eles estão presentes no dataset. Com a presença de todos confirmada, fiz um *.query()* para selecioná-los e criar um novo dataset.
 
 ![image](https://user-images.githubusercontent.com/67301805/236535799-0f35b4a9-2872-48b9-93de-d98c3a892a29.png)
 
@@ -409,7 +402,7 @@ Da junção dos datasets até o plot da tabela Pivot, basicamente, segui o mesmo
 
 - Criar uma tabela com os valores encontrados ✅
 
-Foi feita uma previsão de quanto empréstimos seriam realizados em 2022, que foi disponibilizado através de um link, e o transformei em um *DataFrame*. 
+Foi feita uma previsão de quantos empréstimos seriam realizados em 2022, que foi disponibilizado através de um link, e o transformei em um *DataFrame*. 
 
 ![image](https://user-images.githubusercontent.com/67301805/236567444-fa26d587-4778-4790-a118-ae1f18e9c116.png)
 
@@ -422,7 +415,7 @@ Eu só precisava adicionar mais uma coluna no dataset de previsão, referente ao
 
 ![image](https://user-images.githubusercontent.com/67301805/236567661-a46617d2-23bc-4081-b622-70e3c4525392.png)
 
-Para calcular a diferença percentual, fiz uma função para calcular estes valores, semelhante a *Regra de três*, porém também fazendo uma subtração de 100, para se chegar no percentual, e o valor com duas casas decimais.
+Para calcular a diferença percentual, fiz uma função para calcular estes valores, semelhante a *Regra de três*, porém também fazendo uma subtração de 100, para se chegar no percentual, e devolver o valor com duas casas decimais.
 
 ![image](https://user-images.githubusercontent.com/67301805/236567718-68884139-c353-45cd-bdf5-89fe664dab5f.png)
 
@@ -435,12 +428,12 @@ Transformei o resultado da função em três variáveis e as transformei em um *
 
 A exportação precisava atender alguns requisitos:
 
-	- Não contenha numeração de índice;
+	- Não conter numeração no índice;
 	- Os nomes dos cursos tenham apenas a primeira letra maiúscula;
 	- Os números percentuais estejam indicados pelo símbolo “%”;
 	- Cor dos números: Positivos = Verde; Negativos = Vermelho
 
-Para a primeira, como eu já sabia desta condição, quando fui fazer o *Dataframe* com as diferenças percentuais, já atribuí as colunas, nomes em forma de *string*.
+Para a primeira, como eu já sabia desta condição, quando fui fazer o *Dataframe* com as diferenças percentuais, atribuí nomes em forma de *string* para as colunas.
 
 ![image](https://user-images.githubusercontent.com/67301805/236568235-d4736b15-6ba7-441e-9ced-53acaed8ae35.png)
 
@@ -465,7 +458,7 @@ Ao verificar a correção, vi que as duas últimas configurações eram para ser
 ## Conclusão 🏁
 
 Eu gostei bastante de ter realizado estes desafios, sempre é muito bom pôr em prática o que já aprendemos e acabar descobrindo coisas novas ao longo do caminho.
-infelizmente, eu não consegui entregar os desafios dentro de sete dias e sem as condições finais, mas acredito que o saldo final foi positivo, ainda tenho muito o que explorar na estilização de *DataFrame* e farei isso como lição de casa.
+Infelizmente, eu não consegui entregar os desafios dentro de sete dias e sem as condições finais, mas acredito que o saldo final foi positivo, ainda tenho muito o que explorar na estilização de *DataFrame* e farei isso como lição de casa.
 
 ---
 
