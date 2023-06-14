@@ -470,3 +470,6 @@ Muito obrigada por chegar até aqui e até a próxima 🤗
     <a href="https://matplotlib.org/" target="_blank" rel="noreferrer"> <img src="https://matplotlib.org/_static/images/documentation.svg" alt="matplotlib" width="40" height="40"/> </a>
     <a href="https://seaborn.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="seaborn" width="40" height="40"/> </a>
     </p>
+
+<br><hr> 
+[🔼 back to Top](https://github.com/fab-souza/7DaysOfCode-Python_Pandas#7-days-of-code---python-pandas)
